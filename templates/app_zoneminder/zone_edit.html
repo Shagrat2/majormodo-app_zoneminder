@@ -1,0 +1,73 @@
+<!--#
+ @version 0.3 (auto-set)
+#-->
+<!-- Table 'zone' edit -->
+<ul class="breadcrumb">
+<li> 
+<a href="?"><#LANG_HOME#></a>
+</li>
+<span class="divider">/</span>
+<li class="active">
+[#if ID=""#]
+<#LANG_NEW_RECORD#>
+[#else#]
+<#LANG_EDIT_RECORD#>
+[#endif#]
+</li>
+</ul>
+
+<form action="?" method="post" enctype="multipart/form-data" name="frmEdit" class="form-horizontal">
+[#if OK#]
+    <div class="alert alert-success"><#LANG_DATA_SAVED#></div>
+[#endif OK#]
+[#if ERR#]
+  <div class="alert alert-danger"><#LANG_FILLOUT_REQURED#></div>
+[#endif ERR#]
+
+
+<!-- Minitor (varchar) -->
+<div class="form-group ">
+        <label class="col-lg-4 control-label" for="inputTitle">Monitor:<font color="red">*</font></label>
+        <div class="col-lg-5"><input type="text"  class="form-control [#if ERR_NAME#]alert-danger[#endif#]" name="name" value="[#NAME#]" required="true"></div>
+</div>
+
+<!-- Zone -->
+<div class="form-group ">
+        <label class="col-lg-4 control-label" for="inputTitle">Zone:<font color="red">*</font></label>        
+		<div class="col-lg-5"><input type="text"  class="form-control [#if ERR_ZONE#]alert-danger[#endif#]" name="zone" value="[#ZONE#]" required="true"></div>
+</div>
+
+<!-- SCRIPT_ID (int) -->
+<div class="form-group"[#if BLOCK_TYPE!="" && BLOCK_TYPE!="script"#] style="display:none"[#endif#] id="script_field">
+ <label class="col-lg-3 control-label"[#if ERR_SCRIPT_ID#] style="color:red;font-weight:bold"[#endif#]>
+ <#LANG_SCRIPT#>:
+ </label>
+ <div class="col-lg-4">
+  <select name="script_id" class="form-control">
+   <option value="">
+   [#begin SCRIPTS#]
+    <option value="[#ID#]"[#if ID="<#SCRIPT_ID#>"#] selected[#endif#]>[#TITLE#]
+   [#end SCRIPTS#]
+  </select>
+ </div>
+</div>
+
+<div class="form-group">
+     <div class="col-lg-offset-1 col-lg-5">
+         [#if ID!=""#]
+                 <input class="btn btn-default btn-primary" type="submit" name="subm" value="<#LANG_SUBMIT#>">
+                 [#else ID#]
+                 <input class="btn btn-default btn-primary" type="submit" name="subm" value="<#LANG_ADD#>">
+                 [#endif ID#]
+                 &nbsp;
+                 <a href="?" class="btn btn-default"><#LANG_CANCEL#></a>
+
+    </div>
+</div>
+
+<input type="hidden" name="id" value="<#ID#>">
+<input type="hidden" name="view_mode" value="<#VIEW_MODE#>">
+<input type="hidden" name="edit_mode" value="<#EDIT_MODE#>">
+<input type="hidden" name="mode" value="update">
+</form>
+

@@ -1,0 +1,51 @@
+<div class="form-group">
+Город <strong>[#city#]</strong>&nbsp;&nbsp;
+<a href="?subm=getCityId" class="btn btn-default btn-sm" title="Изменить"><span class="glyphicon glyphicon-edit"></span></a>
+</div>
+
+<form action="?" method="get" class="form-horizontal" name="save_setting">
+
+<div class="form-group">
+	Получать прогноз	
+	<div class="radio">
+	<label>
+		<input type="radio" name="forecastType" value="shot"[#if forecastType=="shot" || forecastType=="0"#] checked[#else#][#endif#]>
+        Краткий 
+    </label>
+	</div>
+	<div class="radio">
+	<label>
+		<input type="radio" name="forecastType" value="full"[#if forecastType=="full"#] checked[#else#][#endif#]>
+        Полный
+    </label>
+	</div>
+</div>
+
+<div class="form-group">	
+	<div class="checkbox">
+        <label>
+          <input type="checkbox" name="imgCache"[#if imgCache=="off"#][#else#] checked[#endif#]> Кэшировать рисунки
+        </label>
+      </div>
+</div>
+
+
+<div class="form-group">
+	<label class="col-md-3">Обновлять один раз в</label>
+	<div class="col-md-2">
+	<select class="form-control" name="update_interval">
+		<option value="0"[#if updateTime=="0"#] selected[#endif#]>----</option>
+		<option value="1"[#if updateTime=="1"#] selected[#endif#]>час</option>
+		<option value="2"[#if updateTime=="2"#] selected[#endif#]>2 часа</option>
+		<option value="3"[#if updateTime=="3"#] selected[#endif#]>3 часа</option>
+		<option value="4"[#if updateTime=="4"#] selected[#endif#]>4 часа</option>
+		<option value="5"[#if updateTime=="5"#] selected[#endif#]>5 часов</option>
+	</select> 
+	</div>
+</div>		
+
+<div class="form-group">
+	<button type="submit" name="subm" value="setting" class="btn btn-primary"><#LANG_SUBMIT#></button>
+	<a href="?" class="btn btn-default"><#LANG_CANCEL#></a>
+</div>
+</form>

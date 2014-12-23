@@ -1,0 +1,105 @@
+<!--#
+ @version 0.1 (auto-set)
+#-->
+<!-- table zwave_devices search -->
+<div class="float-right">
+	<button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#about">About&nbsp;&nbsp;<span class="glyphicon glyphicon-info-sign icon-white"></span>
+	</button>
+</div>
+
+<div class="modal fade" id="about" tabindex="-1" role="dialog" aria-labelledby="about1" aria-hidden="true">
+<!-- <div id="about" class="modal hide"> -->
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				<h4 class="modal-title">ZoneMinder evants. [#VER#]</h4>
+			</div>
+			<div class="modal-body">
+				<p> Module get zone events.<br>
+				<a href="#" target="_blank">Forum</a>.<br>				
+				</p>
+				<p class="float-left"></p>
+			</div>
+			
+			<div class="modal-footer">
+				<div class="pull-left">Best regards!<br>@S :)</div>
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+<div>
+ZoneMinder <a class="btn btn-default" href="#" onClick="$('#api_settings').toggle();return false;"><#LANG_SETUP#></a> 
+</div>
+<div style="display:none" id='api_settings'>
+&nbsp;
+<form action="?" method="post" enctype="multipart/form-data" name="frmEdit" class="form-horizontal">
+<fieldset>
+<div class="form-group">
+ <label class="control-label"[#if ERR_ZM_HOST#] style="color:red;font-weight:bold"[#endif#]>
+ Host:
+ (*)
+ </label>
+ <div class="controls"><input type="text" name="zm_host" value="<#ZM_HOST#>" class="input"></div>
+</div>
+
+<div class="form-group">
+ <label class="control-label"[#if ERR_ZM_PORT#] style="color:red;font-weight:bold"[#endif#]>
+ Port:
+ (*)
+ </label>
+ <div class="controls"><input type="text" name="zm_port" value="<#ZM_PORT#>" class="input"></div>
+</div>
+
+<div class="form-group">
+ <label class="control-label"[#if ERR_ZM_BASE#] style="color:red;font-weight:bold"[#endif#]>
+ Base:
+ (*)
+ </label>
+ <div class="controls"><input type="text" name="zm_base" value="<#ZM_BASE#>" class="input"></div>
+</div>
+
+<div class="form-group">
+ <label class="control-label"[#if ERR_ZM_USERNAME#] style="color:red;font-weight:bold"[#endif#]>
+ Username:
+ (*)
+ </label>
+ <div class="controls"><input type="text" name="zm_username" value="<#ZM_USERNAME#>" class="input"></div>
+</div>
+
+<div class="form-group">
+ <label class="control-label"[#if ERR_ZM_PASSWORD#] style="color:red;font-weight:bold"[#endif#]>
+ Password:
+ </label>
+ <div class="controls"><input type="password" name="zm_password" value="<#ZM_PASSWORD#>" class="input"></div>
+</div>
+
+
+<div class="form-actions">
+<button type="submit" name="subm" value="Submit" class="btn btn-primary"><#LANG_UPDATE#></button>
+<input type="hidden" name="view_mode" value="update_settings">
+<input type="hidden" name="mode" value="update">
+</div>
+</fieldset>
+</form>
+</div>
+
+<br>
+ <!-- action usual -->
+ <!-- table zones search -->
+ [#if VIEW_MODE="search_zones" || VIEW_MODE=""#]  
+  [#inc zones_search_admin.html#]  
+ [#endif VIEW_MODE#]
+ <!-- / table zones search -->
+ <!-- table zone edit -->
+ [#if VIEW_MODE="edit_zone"#]
+ Edit:
+  [#inc zone_edit.html#]
+ [#endif VIEW_MODE#]
+ <!-- / table zone edit -->
+ <!-- table zones view --> 
+ [#if VIEW_MODE="view_zones"#]
+  [#inc zones_view.html#]
+ [#endif VIEW_MODE#]
+ <!-- / table zones view -->
