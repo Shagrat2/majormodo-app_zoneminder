@@ -23,13 +23,13 @@ $zoneminder->getConfig();
 // connecting to zone minder
 $zmdb = new mysql($zoneminder->config['ZM_HOST'], $zoneminder->config['ZM_PORT'], $zoneminder->config['ZM_USERNAME'], $zoneminder->config['ZM_PASSWORD'], $zoneminder->config['ZM_BASE']); 
  
-// Ïîñëåäíèé Event ïğè çàïóñêå
+// ÃÃ®Ã±Ã«Ã¥Ã¤Ã­Ã¨Ã© Event Ã¯Ã°Ã¨ Ã§Ã Ã¯Ã³Ã±ÃªÃ¥
 $res = $zmdb->SelectOne("SELECT id FROM Events ORDER BY id DESC LIMIT 1");
 
 $lastEvent = $res['id'];
 echo "Last id = $lastEvent\r\n";
 
-//çàïóñêàåì öèêë îáğàáîòêè ñîáûòèé
+//Ã§Ã Ã¯Ã³Ã±ÃªÃ Ã¥Ã¬ Ã¶Ã¨ÃªÃ« Ã®Ã¡Ã°Ã Ã¡Ã®Ã²ÃªÃ¨ Ã±Ã®Ã¡Ã»Ã²Ã¨Ã©
 while(1){
    setGlobal((str_replace('.php', '', basename(__FILE__))).'Run', time(), 1);
    
@@ -49,7 +49,7 @@ while(1){
 	   
 	   if (($res['Name'] == $itm['NAME']) and strpos($res['Notes'], $itm['ZONE'])){
 	     echo "Found ".$itm['NAME'].":".$itm['ZONE']."\r\n";
-	     runScript($itm['SCRIPT_ID']);
+	     runScript($itm['SCRIPT_ID'],array('EventId' => $res['id'], 'Monitor' => $res['Name']));
          break;	     
 	   }
 	 }
